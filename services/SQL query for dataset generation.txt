@@ -1,0 +1,10 @@
+select s.id, ct.ctype, st.title, sc.servicecount, c.title, s.is_draft, s.is_bulk, s.bulk_from, s.bulk_to, s.note, s.created, s.modified, u.extranet_name, u.role, o.extranet_country, o.extranet_name
+from services as s 
+
+left join servicetypes as st on s.servicetype_id=st.id 
+left join customertypes as ct on s.customertype_id=ct.id 
+left join users as u on s.user_id=u.id
+left join organizations as o on u.organization_id=o.id
+
+join services_categories as sc on s.id=sc.service_id
+join categories as c on c.id=sc.category_id
